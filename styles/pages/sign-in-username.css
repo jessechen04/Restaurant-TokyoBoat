@@ -7,4 +7,36 @@
 .username-box {
     background-color: white;
     margin-top: 100px;
+    padding: 20px;
+}
+
+.continue-button-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.continue-button {
+    display: block;
+    margin-top: 20px;
+    background-color: rgb(207, 131, 31);
+    border: none;
+}
+
+.continue-link {
+    text-decoration: none;
+    color: white;
+}
+
+.create-account-box {
+    background-color: white;
+    margin-top: 20px;
+    display: grid;
+    grid-template-rows: 40px 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.new-customer-text {
+    font-size: 14px;
+    text-align: center;
 }

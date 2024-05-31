@@ -1,0 +1,11 @@
+.navigation-bar {
+    background-color: pink;
+    position: fixed;
+    height: 700px;
+    width: 100px;
+}
+
+.fill {
+    background-color: aqua;
+    height: 500px;
+}

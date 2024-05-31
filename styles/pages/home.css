@@ -1,4 +1,4 @@
-.contact-us {
+.contact-us-box {
     width: 1fr;
     height: 700px;
     background-color: yellow;
@@ -9,3 +9,14 @@
     height: 700px;
     background-color: pink;
 }
+
+.contact-us-text {
+    padding-top: 40px;
+    text-align: center;
+}
+
+.days-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
