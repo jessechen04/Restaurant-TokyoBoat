@@ -15,14 +15,11 @@
     <div class="sign-in-box">
         <div class="username-box">
             <h1>Sign in</h1>
-            <div>
-                <input type="email" placeholder="Email or Username">
-                <div class="continue-button-flex">
-                    <button class="continue-button">
-                        <a href="sign-in-password.html">Continue</a>
-                    </button>
-                </div>
-            </div>
+            <form action="/" method="POST">
+                <input type="email" name="email" placeholder="Email">
+                <input type="password" name="password" placeholder="Password">
+                <input type="submit" value="Continue">
+            </form>
         </div>
     
         <div class="create-account-box">
