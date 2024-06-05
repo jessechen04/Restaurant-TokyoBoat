@@ -5,9 +5,12 @@
 }
 
 .username-box {
+    display: grid;
+    justify-items: center;
+
     background-color: white;
     margin-top: 100px;
-    padding: 20px;
+    padding: 40px;
 }
 
 .create-account-box {
@@ -22,4 +25,42 @@
 .new-customer-text {
     font-size: 14px;
     text-align: center;
+}
+
+.input-grid {
+    display: grid;
+    grid-template-columns: 300px;
+    row-gap: 16px;
+}
+
+.input {
+    height: 36px;
+    font-size: 16px;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.sign-in-button {
+    font-weight: 800;
+    font-size: 14px;
+    color: white;
+    background-color: brown;
+    border: none;
+
+    height: 40px;
+}
+
+.create-account-button {
+    background-color: beige;
+    width: 300px;
+    height: 40px;
+    border: solid;
+    border-width: 2px;
+}
+
+.create-account-link {
+    font-family: Roboto;
+    font-weight: 800;
+    font-size: 14px;
 }

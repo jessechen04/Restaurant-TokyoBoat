@@ -21,21 +21,21 @@ const stylesSharedPath = path.join(__dirname, '..', 'styles', 'shared');
 app.use('/styles/pages', express.static(stylesPagesPath));
 app.use('/styles/shared', express.static(stylesSharedPath));
 
-/*const db = mysql.createConnection({
+const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
     database: 'nodejs-login',
     port: 3377
-});*/
+});
 
-const db = mysql.createConnection({
+/*const db = mysql.createConnection({
     host: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE,
     port: 3377
-});
+});*/
 
 //app.set('view engine', 'hbs');
 
