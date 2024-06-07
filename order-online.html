@@ -1,70 +1,83 @@
 <!DOCTYPE html>
-<head>
-    <title>
-        Order Online
-    </title>
+<html>
+    <head>
+        <title>
+            Order Online
+        </title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="styles/pages/order-online.css">
-    <link rel="stylesheet" href="styles/shared/general.css">
-</head>
-<body>
-    <div class="navigation-bar">
-        <div class="category-flex"><a href="#Popular Items">Popular Items</a></div>
-        <div class="category-flex"><a>Appetizers</a></div>
-        <div class="category-flex"><a>Soups</a></div>
-        <div class="category-flex"><a href="#Salads">Salads</a></div>
-        <div class="category-flex"><a>Sushi / Sashimi</a></div>
-        <div class="category-flex"><a>Sushi / Hand Roll</a></div>
-        <div class="category-flex"><a>Chef's Special Roll</a></div>
+        <link rel="stylesheet" href="styles/pages/order-online.css">
+        <link rel="stylesheet" href="styles/shared/general.css">
+    </head>
+    <body>
+        <div class="navigation-bar">
+            <div class="category-flex"><a href="#Popular Items">Popular Items</a></div>
+            <div class="category-flex"><a>Appetizers</a></div>
+            <div class="category-flex"><a>Soups</a></div>
+            <div class="category-flex"><a href="#Salads">Salads</a></div>
+            <div class="category-flex"><a>Sushi / Sashimi</a></div>
+            <div class="category-flex"><a>Sushi / Hand Roll</a></div>
+            <div class="category-flex"><a>Chef's Special Roll</a></div>
 
-    </div>
-    
-    <div class="menu">
-        <div id="Popular Items" class="menu-section">
-            <div class="section-title">Popular Items</div>
-            <div class="section-grid">
-                <div class="menu-item">
-                    <div class="item-name">california Roll</div>
-                    <div class="item-price">$5.00</div>
-                    <div class="item-description"></div>
+        </div>
+        
+        <div class="menu">
+            <div id="Popular Items" class="menu-section">
+                <div class="section-title">Popular Items</div>
+                <div class="section-grid">
+                    <div class="menu-item">
+                        <div class="item-name">california Roll</div>
+                        <div class="item-price">$5.00</div>
+                        <div class="item-description"></div>
 
-                    <div class="item-image"></div>
+                        <div class="item-image"></div>
+                    </div>
                 </div>
+            </div>
+
+            <div id="Salads" class="menu-section">
+                <div class="section-title">Salads</div>
+                <div class="section-grid">
+                    <div class="menu-item">
+                        <div class="item-name">Green Garden Salad</div>
+                        <div class="item-price">$3.00</div>
+                        <div class="item-description"></div>
+
+                        <div class="item-image"></div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Squid Salad</div>
+                        <div class="item-price">$5.00</div>
+                        <div class="item-description"></div>
+
+                        <div class="item-image"></div>
+                    </div>
+
+                    <div class="menu-item">
+                        <div class="item-name">Cucumber Salad</div>
+                        <div class="item-price">$3.00</div>
+                        <div class="item-description"></div>
+
+                        <div class="item-image"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill">
+                1
+            </div>
+            <div class="fill">
+                2
+            </div>
+            <div class="fill">
+                3
             </div>
         </div>
 
-        <div id="Salads" class="menu-section">
-            <div class="section-title">Salads</div>
-            <div class="section-grid">
-                <div class="menu-item">
-                    <div class="item-name">Green Garden Salad</div>
-                    <div class="item-price">$3.00</div>
-                    <div class="item-description"></div>
-
-                    <div class="item-image"></div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="item-name">Squid Salad</div>
-                    <div class="item-price">$5.00</div>
-                    <div class="item-description"></div>
-
-                    <div class="item-image"></div>
-                </div>
-
-                <div class="menu-item">
-                    <div class="item-name">Cucumber Salad</div>
-                    <div class="item-price">$3.00</div>
-                    <div class="item-description"></div>
-
-                    <div class="item-image"></div>
-                </div>
-            </div>
-        </div>
 
         <div class="fill">
             1
@@ -75,16 +88,7 @@
         <div class="fill">
             3
         </div>
-    </div>
 
-
-    <div class="fill">
-        1
-    </div>
-    <div class="fill">
-        2
-    </div>
-    <div class="fill">
-        3
-    </div>
-</body>
+        <script type="module" src="scripts/order-online.js"></script>
+    </body>
+</html>
