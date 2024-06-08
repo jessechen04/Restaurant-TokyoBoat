@@ -1,5 +1,6 @@
 export let menu;
 
+// fetches the database data and stores in menu
 fetch('http://localhost:5000/menu')
             .then(response => response.json())
             .then(data => {
