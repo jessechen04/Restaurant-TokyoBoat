@@ -93,23 +93,33 @@ app.get('/order-online', (req, res) => {
 });
 
 // pulls the database data
-app.get('/menu', (req, res) => {
-    db.query('SELECT * FROM menuItems', (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(results);
-        }
-    });
-});
+let categoriesArr;
 
-app.get('/menuCategories', (req, res) => {
-    db.query('SELECT * FROM menucategories', (err, results, fields) => {
-        if (err) {
-            console.log(err);
-        } else {
-            res.json(results);
-        }
+new Promise((resolve) => {
+    app.get('/menuCategories', (req, res) => {
+        db.query('SELECT * FROM menucategories', (err, results, fields) => {
+            if (err) {
+                console.log(err);
+            } else {
+                categoriesArr = results;
+                //console.log(categoriesArr);
+                res.json(results);
+                resolve();
+            }
+        });
+    });
+}).then(() => {
+    categoriesArr.forEach(element => {
+        app.get(`/menu/${element.id}`, (req, res) => {
+            db.query(`SELECT * FROM menuItems WHERE itemCategory = \"${element.category}\"`, (err, results, fields) => {
+                if (err) {
+                    console.log(err);
+                } else {
+    
+                    res.json(results);
+                }
+            });
+        });
     });
 });
 

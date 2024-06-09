@@ -1,14 +1,3 @@
-export let menu;
-
-// fetches the database data and stores in menu
-fetch('http://localhost:5000/menu')
-            .then(response => response.json())
-            .then(data => {
-                menu = data; // Assign the fetched data to the local variable
-                console.log('Data assigned to local variable:', menu);
-            })
-            .catch(error => console.error('Error fetching data:', error));
-
 export let menuCategories;
 
 /*export function loadMenuCategories(fun) {
@@ -31,11 +20,28 @@ export function loadMenuCategories() {
             .then(data => {
                 menuCategories = data; // Assign the fetched data to the local variable
                 console.log('Data assigned to local variable:', menuCategories);
+                fetchMenuItems();
                 resolve(); // Resolve the promise when data is fetched and assigned
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
                 reject(error); // Reject the promise if there's an error
             });
+    });
+}
+
+
+export let menu = [];
+
+// fetches the database data and stores in menu
+function fetchMenuItems() {
+    menuCategories.forEach((value) => {
+        fetch(`http://localhost:5000/menu/${value.id}`)
+            .then(response => response.json())
+            .then(data => {
+                menu.push(data); // Assign the fetched data to the local variable
+                console.log('Data assigned to local variable:', menu);
+            })
+            .catch(error => console.error('Error fetching data:', error));
     });
 }
