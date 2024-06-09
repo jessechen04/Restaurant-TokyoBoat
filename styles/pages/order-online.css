@@ -33,12 +33,17 @@
     display: grid;
     grid-template-columns: 200px 200px;
     row-gap: 20px;
+    column-gap: 5px;
     margin-bottom: 20px;
 }
 
 .menu-item {
+    background-color: beige;
+    border: solid;
     border-width: 2px;
     border-color: black;
+    border-radius: 5px;
+    padding: 5px;
 }
 
 .fill {
