@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
 
+
     height: 40px;
 }
 
@@ -43,4 +44,8 @@
 .fill {
     background-color: aqua;
     height: 500px;
+}
+
+a {
+    text-align: center;
 }

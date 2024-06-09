@@ -103,6 +103,16 @@ app.get('/menu', (req, res) => {
     });
 });
 
+app.get('/menuCategories', (req, res) => {
+    db.query('SELECT * FROM menucategories', (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(results);
+        }
+    });
+});
+
 // sets the port for code to run
 app.listen(5000, () => {
     console.log('Server started on port 5000.');
