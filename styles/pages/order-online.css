@@ -84,3 +84,21 @@
 a {
     text-align: center;
 }
+
+.popup {
+    display: none; /* Initially hide the fixed content */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid black;
+    z-index: 9999; /* Ensure it's on top of other content */
+}
+
+.menu-item-popup {
+    background-color: aqua;
+    height: 200px;
+    width: 300px;
+}

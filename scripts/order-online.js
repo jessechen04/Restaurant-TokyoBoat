@@ -3,24 +3,34 @@ import {menu, menuCategories, fetchMenuCategories} from "../data/menu.js";
 let navigationHTML = '';
 let categoriesHTML = '';
 let menuItemsHTML = '';
+let menuItemPopupHTML = '';
 
 //completes the promise and loads navigation bar
-
-/*new Promise((resolve) => {
-    loadMenuCategories(() => {
-        resolve();
-    });
-}).then(() => {
-    generateNavigationBar();
-});*/
-
 fetchMenuCategories()
     .then(() => {
-        generateNavigationBar();
+        //generateNavigationBar();
         generateMenuCategories();
         generateMenuItems();
     })
     .catch(error => {
+        console.error(error);
+    }).finally(() => {
+        document.querySelectorAll('.menu-item').forEach((element) => {
+            //const itemCategory = element.dataset.itemCategory;
+            //console.log(itemCategory);
+            element.addEventListener('click', () => {
+                menuItemPopupHTML = 
+                `
+                <div class="menu-item-popup">
+
+                </div>
+                `
+
+                document.querySelector('.popup').innerHTML = menuItemPopupHTML;
+                toggleFixedContent();
+            });
+        });
+    }).catch(error => {
         console.error(error);
     });
 
@@ -57,16 +67,23 @@ function generateMenuItems() {
         element.forEach((menuItem) => {
             menuItemsHTML += 
             `
-            <div class="menu-item">
+            <div class="menu-item" data-item-category="${menuItem.itemCategory}">
                 <div class="item-name">${menuItem.itemName}</div>
                 <div class="item-price">$${(menuItem.itemPriceCents / 100).toFixed(2)}</div>
                 <div class="item-description">${menuItem.itemDescription}</div>
-
-                <div class="item-image"></div>
             </div>
             `
         });
         document.getElementById(`${element[0].itemCategory}-section`).innerHTML = menuItemsHTML;
         menuItemsHTML = '';
     });
+}
+
+function toggleFixedContent() {
+    var fixedContent = document.querySelector('.popup');
+    if (fixedContent.style.display === "none") {
+        fixedContent.style.display = "block";
+    } else {
+        fixedContent.style.display = "none";
+    }
 }
