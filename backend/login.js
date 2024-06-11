@@ -14,19 +14,20 @@ dotenv.config({path: './.env'});
 // file paths used
 const home = path.join(__dirname, '..', 'home.html');
 const orderScreen = path.join(__dirname, '..', 'order-online.html');
-const usernameScreen = path.join(__dirname, '..', 'sign-in-username.html');
-const passwordScreen = path.join(__dirname, '..', 'sign-in-password.html');
+const usernameScreen = path.join(__dirname, '..', 'sign-in.html');
 const createAccountScreen = path.join(__dirname, '..', 'create-account.html');
 const stylesPagesPath = path.join(__dirname, '..', 'styles', 'pages');
 const stylesSharedPath = path.join(__dirname, '..', 'styles', 'shared');
 const scriptsPath = path.join(__dirname, '..', 'scripts');
 const dataPath = path.join(__dirname, '..', 'data');
+const imagesPath = path.join(__dirname, "..", 'images');
 
 // grants permission to use certain folders
 app.use('/styles/pages', express.static(stylesPagesPath));
 app.use('/styles/shared', express.static(stylesSharedPath));
 app.use('/scripts', express.static(scriptsPath));
 app.use('/data', express.static(dataPath));
+app.use('/images', express.static(imagesPath));
 
 // creates connection to database
 const db = mysql.createConnection({
@@ -60,7 +61,7 @@ app.get('/', (req, res) => {
     res.sendFile(home);
 });
 
-app.get('/sign-in-username', (req, res) => {
+app.get('/sign-in', (req, res) => {
     res.sendFile(usernameScreen);
 });
 
@@ -71,18 +72,15 @@ app.post('/', encoder, (req, res) => {
     db.query('select * from users where email = ? and password = ?', [emailInput, passwordInput] , (error, results, fields) => {
         if (results.length > 0) {
             //console.log('hi');
-            res.redirect('/sign-in-password');
+            res.redirect('/order-online');
         } else {
-            res.redirect('/sign-in-username');
+            res.redirect('/sign-in');
         }
         //res.end();
     });
 });
 
 // pulls up the screens
-app.get('/sign-in-password', (req, res) => {
-    res.sendFile(passwordScreen);
-});
 
 app.get('/create-account', (req, res) => {
     res.sendFile(createAccountScreen);

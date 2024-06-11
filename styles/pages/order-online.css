@@ -1,3 +1,32 @@
+.header {
+    background-color: aquamarine;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+}
+
+.right-header {
+    display: flex;
+    align-items: center;
+}
+
+.home-icon {
+    height: 40px;
+    width: 46px;
+}
+
+.shopping-bag-icon {
+    height: 40px;
+    width: 40px;
+}
+
 .navigation-bar {
     display: flex;
     flex-direction: column;
@@ -5,7 +34,7 @@
 
     background-color: pink;
     position: fixed;
-    top: 0px;
+    top: 50px;
     bottom: 0px;
     width: 150px;
     box-shadow: 5px 5px 16px;
@@ -21,6 +50,7 @@
 }
 
 .menu {
+    margin-top: 50px;
     margin-left: 180px;
 }
 
@@ -31,7 +61,7 @@
 
 .section-grid {
     display: grid;
-    grid-template-columns: 200px 200px;
+    grid-template-columns: 200px 200px 200px;
     row-gap: 20px;
     column-gap: 5px;
     margin-bottom: 20px;

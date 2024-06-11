@@ -34,13 +34,15 @@ export let menu = [];
 
 // fetches the database data and stores in menu
 function fetchMenuItems(fun) {
-    menuCategories.forEach((value) => {
+    menuCategories.forEach((value, index) => {
         fetch(`http://localhost:5000/menu/${value.id}`)
             .then(response => response.json())
             .then(data => {
                 menu.push(data); // Assign the fetched data to the local variable
                 console.log('Data assigned to local variable:', menu);
-                fun();
+                if (index === (menuCategories.length - 1)) {
+                    fun();
+                }
             })
             .catch(error => console.error('Error fetching data:', error));
     });
