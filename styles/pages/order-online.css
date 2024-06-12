@@ -9,7 +9,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 60px;
 }
 
 .right-header {
@@ -18,13 +18,23 @@
 }
 
 .home-icon {
-    height: 40px;
-    width: 46px;
+    margin-left: 8px;
+    height: 50px;
+    width: 52px;
 }
 
 .shopping-bag-icon {
-    height: 40px;
-    width: 40px;
+    height: 50px;
+    width: 50px;
+}
+
+.cart-count {
+    position: relative;
+    top: 6px;
+    right: 29px;
+
+    font-weight: 800;
+    color: orange;
 }
 
 .navigation-bar {
@@ -34,7 +44,7 @@
 
     background-color: pink;
     position: fixed;
-    top: 50px;
+    top: 60px;
     bottom: 0px;
     width: 150px;
     box-shadow: 5px 5px 16px;
@@ -50,7 +60,7 @@
 }
 
 .menu {
-    margin-top: 50px;
+    margin-top: 60px;
     margin-left: 180px;
 }
 
@@ -92,13 +102,32 @@ a {
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
-    padding: 20px;
+    padding: 0px 5px;
     border: 1px solid black;
-    z-index: 9999; /* Ensure it's on top of other content */
+    border-radius: 5px;
+    border-color: darkgray;
+    z-index: 9999;
 }
 
 .menu-item-popup {
-    background-color: aqua;
     height: 200px;
     width: 300px;
+}
+
+.exit {
+    text-align: right;
+}
+
+select {
+    background-color: hsl(0, 5%, 88%);
+    border-radius: 2px;
+}
+
+.add-to-order {
+    display: flex;
+    justify-content: center;
+}
+
+.add-to-order-button {
+    width: 200px;
 }
