@@ -9,11 +9,14 @@ const encoder = bodyParser.urlencoded();
 const dotenv = require('dotenv');
 const path = require('path');
 
+const bcrypt = require('bcryptjs');
+
 dotenv.config({path: './.env'});
 
 // file paths used
 const home = path.join(__dirname, '..', 'home.html');
 const orderScreen = path.join(__dirname, '..', 'order-online.html');
+const cartScreen = path.join(__dirname, '..', 'cart.html');
 const usernameScreen = path.join(__dirname, '..', 'sign-in.html');
 const createAccountScreen = path.join(__dirname, '..', 'create-account.html');
 const stylesPagesPath = path.join(__dirname, '..', 'styles', 'pages');
@@ -28,6 +31,7 @@ app.use('/styles/shared', express.static(stylesSharedPath));
 app.use('/scripts', express.static(scriptsPath));
 app.use('/data', express.static(dataPath));
 app.use('/images', express.static(imagesPath));
+
 
 // creates connection to database
 const db = mysql.createConnection({
@@ -86,6 +90,39 @@ app.get('/create-account', (req, res) => {
     res.sendFile(createAccountScreen);
 });
 
+app.post('/register', encoder, (req, res) => {
+    const name = req.body.firstName + ' ' + req.body.lastName;
+    const email = req.body.email;
+    const password = req.body.password;
+    const passwordConfirm = req.body.passwordConfirm;
+    //console.log(name + email + password + passwordConfirm);
+
+    db.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+
+        if (results.length > 0) {
+            return res.redirect('/create-account');
+        } else if (password !== passwordConfirm) {
+            return res.redirect('/create-account');
+        }
+
+        let hashedPassword = await bcrypt.hash(password, 8);
+        //console.log(hashedPassword);
+
+        db.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) => {
+            if (error) {
+                console.log(error);
+            } else {
+                res.redirect('/order-online');
+            }
+        });
+    });
+
+    //res.send("Form Submitted");
+});
+
 app.get('/order-online', (req, res) => {
     res.sendFile(orderScreen);
 });
@@ -119,6 +156,10 @@ new Promise((resolve) => {
             });
         });
     });
+});
+
+app.get('/cart', (req, res) => {
+    res.sendFile(cartScreen);
 });
 
 // sets the port for code to run

@@ -13,6 +13,11 @@
     padding: 40px;
 }
 
+.sign-in-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
 .create-account-box {
     background-color: white;
     margin-top: 20px;
