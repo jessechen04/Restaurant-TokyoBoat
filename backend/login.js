@@ -73,10 +73,24 @@ app.get('/sign-in', (req, res) => {
 app.post('/', encoder, (req, res) => {
     var emailInput = req.body.email;
     var passwordInput = req.body.password;
-    db.query('select * from users where email = ? and password = ?', [emailInput, passwordInput] , (error, results, fields) => {
+    db.query('select * from users where email = ?', [emailInput] , async (error, results, fields) => {
+        if (error) {
+            console.log(error);
+        }
+        
         if (results.length > 0) {
-            //console.log('hi');
-            res.redirect('/order-online');
+            const user = results[0];
+            const hashedPassword = user.password;
+
+            const passwordMatch = await bcrypt.compare(passwordInput, hashedPassword);
+            
+            if (passwordMatch) {
+                //console.log('hi');
+                res.redirect('/order-online');
+            } else {
+                res.redirect('/sign-in');
+            }
+            
         } else {
             res.redirect('/sign-in');
         }
