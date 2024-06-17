@@ -27,3 +27,11 @@ export function countCart() {
     
     return count;
 }
+
+export function saveCartToLocalStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+export function getCartFromLocalStorage() {
+    cart = JSON.parse(localStorage.getItem('cart'));
+}

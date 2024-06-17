@@ -1,5 +1,7 @@
 import {menu, menuCategories, fetchMenuCategories} from "../data/menu.js";
-import {cart, addToCart, countCart} from "../data/cart.js";
+import {cart, addToCart, countCart, saveCartToLocalStorage, getCartFromLocalStorage} from "../data/cart.js";
+
+getCartFromLocalStorage();
 
 let navigationHTML = '';
 let categoriesHTML = '';
@@ -12,6 +14,7 @@ fetchMenuCategories()
         generateNavigationBar();
         generateMenuCategories();
         generateMenuItems();
+        document.querySelector('.cart-count').innerHTML = countCart();
     })
     .catch(error => {
         console.error(error);
@@ -19,7 +22,7 @@ fetchMenuCategories()
         document.querySelectorAll('.menu-item').forEach((element) => {
             //const itemCategory = element.dataset.itemCategory;
             element.addEventListener('click', () => {
-                const itemId = element.dataset.itemId;
+                const itemId = parseInt(element.dataset.itemId);
                 const itemName = element.children[0].innerHTML;
                 const itemPrice = element.children[1].innerHTML;
                 const itemDescription = element.children[2].innerHTML;
@@ -60,7 +63,7 @@ fetchMenuCategories()
 
                 document.querySelector('.add-to-order-button').addEventListener('click', () => {
                     addToCart(itemId);
-                    console.log(cart);
+                    saveCartToLocalStorage();
 
                     document.querySelector('.cart-count').innerHTML = countCart();
                 });
