@@ -16,7 +16,7 @@ dotenv.config({path: './.env'});
 // file paths used
 const home = path.join(__dirname, '..', 'home.html');
 const orderScreen = path.join(__dirname, '..', 'order-online.html');
-const cartScreen = path.join(__dirname, '..', 'cart.html');
+const checkoutScreen = path.join(__dirname, '..', 'checkout.html');
 const usernameScreen = path.join(__dirname, '..', 'sign-in.html');
 const createAccountScreen = path.join(__dirname, '..', 'create-account.html');
 const stylesPagesPath = path.join(__dirname, '..', 'styles', 'pages');
@@ -173,7 +173,7 @@ new Promise((resolve) => {
 });
 
 app.get('/cart', (req, res) => {
-    res.sendFile(cartScreen);
+    res.sendFile(checkoutScreen);
 });
 
 // sets the port for code to run
