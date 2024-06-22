@@ -34,7 +34,7 @@ fetchMenuCategories()
                     <div>${itemName}</div>
                     <div>${itemPrice}</div>
                     <div>${itemDescription}</div>
-                    <div class="quantity-selector">
+                    <div class="quantity-selector-${itemId}">
                         <select>
                             <option value="1">1</option>
                             <option value="2">2</option>
@@ -45,7 +45,6 @@ fetchMenuCategories()
                             <option value="7">7</option>
                             <option value="8">8</option>
                             <option value="9">9</option>
-                            <option value="10">10</option>
                         </select>
                     </div>
                     <div class="add-to-order">
@@ -62,7 +61,9 @@ fetchMenuCategories()
                 });
 
                 document.querySelector('.add-to-order-button').addEventListener('click', () => {
-                    addToCart(itemId);
+                    const count = parseInt(document.querySelector(`.quantity-selector-${itemId}`).children[0].value);
+
+                    addToCart(itemId, count);
                     saveCartToLocalStorage();
 
                     document.querySelector('.cart-count').innerHTML = countCart();

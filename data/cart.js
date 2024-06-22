@@ -1,6 +1,6 @@
 export let cart = [];
 
-export function addToCart(itemId) {
+export function addToCart(itemId, count) {
     let cartItem;
 
     cart.forEach(element => {
@@ -10,11 +10,11 @@ export function addToCart(itemId) {
     });
 
     if (cartItem) {
-        cartItem.count++;
+        cartItem.count += count;
     } else {
         cart.push({
             id: itemId,
-            count: 1
+            count: count
         });
     }
 }
