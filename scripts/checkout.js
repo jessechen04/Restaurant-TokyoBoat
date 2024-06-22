@@ -12,16 +12,6 @@ fetchMenuCategories()
     .then(() => {
 
         generateCheckoutPage();
-
-        document.querySelectorAll('.remove-item').forEach(element => {
-            element.addEventListener('click', () => {
-                const id = parseInt(element.dataset.itemId);
-                removeFromCart(id);
-                saveCartToLocalStorage();
-                generateCheckoutPage();
-                document.querySelector('.cart-count').innerHTML = countCart();
-            });
-        });
 });
 
 function generateCheckoutPage() {
@@ -73,4 +63,15 @@ function generateCheckoutPage() {
         <a class="place-order-text">Place Your Order</a>
     </button>
     `
+
+    document.querySelectorAll('.remove-item').forEach(element => {
+        element.addEventListener('click', () => {
+            const id = parseInt(element.dataset.itemId);
+            removeFromCart(id);
+            console.log(cart);
+            saveCartToLocalStorage();
+            generateCheckoutPage();
+            document.querySelector('.cart-count').innerHTML = countCart();
+        });
+    });
 }
