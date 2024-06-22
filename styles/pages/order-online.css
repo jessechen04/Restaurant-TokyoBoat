@@ -13,6 +13,24 @@
     border-width: 1px;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
+#Appetizers,
+#Soups,
+#Salads,
+#Dinner\ From\ Sushi\ Bar,
+#Sushi\ \/\ Sashimi,
+#Sushi\ \/\ Hand\ Rolls,
+#Chef\'s\ Special\ Rolls,
+#Tempura,
+#Hibachi\ Dinner,
+#Hibachi\ Express,
+#Hibachi\ Bowls {
+    padding-top: 60px;
+}
+
 .category-flex {
     display: flex;
     justify-content: center;
@@ -25,6 +43,7 @@
 .menu {
     margin-top: 70px;
     margin-left: 180px;
+    margin-right: 20px;
 }
 
 .section-title {

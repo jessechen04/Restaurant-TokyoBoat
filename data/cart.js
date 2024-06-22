@@ -19,6 +19,16 @@ export function addToCart(itemId) {
     }
 }
 
+export function removeFromCart(id) {
+    cart = cart.filter(cartItem => {
+        return cartItem.id !== id;
+    });
+}
+
+export function editCart() {
+
+}
+
 export function countCart() {
     let count = 0;
     cart.forEach(element => {

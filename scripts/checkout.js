@@ -1,13 +1,15 @@
-import {cart, getCartFromLocalStorage} from '../data/cart.js';
+import {cart, countCart, removeFromCart, getCartFromLocalStorage} from '../data/cart.js';
 import {menu, fetchMenuCategories, menuCategories} from '../data/menu.js';
 
 const TAX_RATE = 0.06;
 
 getCartFromLocalStorage();
+document.querySelector('.cart-count').innerHTML = countCart();
 
 let yourBagHTML = '';
 
 console.log(cart);
+
 fetchMenuCategories()
     .then(() => {
         
@@ -39,8 +41,7 @@ fetchMenuCategories()
             </div>
             `
 
-            itemsTotal += parseFloat((currentItem.itemPriceCents / 100));
-
+            itemsTotal += parseFloat((currentItem.itemPriceCents / 100) * cartItem.count);
         });
 
         document.querySelector('.your-bag-items').innerHTML = yourBagHTML;
