@@ -4,6 +4,7 @@
     justify-items: center;
 
     padding: 10px;
+    margin-top: 60px;
 }
 
 .your-bag-box {
@@ -25,10 +26,13 @@
     border-radius: 10px;
     padding: 10px;
     margin-bottom: 20px;
+
 }
 
-.remove-item {
+.remove-item, .edit-item {
     display: inline;
+    color: rgb(3, 100, 174);
+    cursor: pointer;
 }
 
 
@@ -49,8 +53,7 @@
     padding: 10px;
     margin: 10px;
 
-    min-height: 200px;
-    max-height: 250px;
+    height: 200px;
     max-width: 300px;
 }
 
@@ -58,4 +61,15 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+}
+
+.place-order-button {
+    background-color: red;
+    border: none;
+    border-radius: 8px;
+    height: 30px;
+}
+
+.place-order-text {
+    color: white;
 }

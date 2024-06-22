@@ -1,0 +1,40 @@
+.header {
+    background-color: white;
+    border-bottom: solid;
+    border-width: 2px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+.right-header {
+    display: flex;
+    align-items: center;
+}
+
+.home-icon {
+    margin-left: 8px;
+    height: 50px;
+    width: 52px;
+}
+
+.shopping-bag-icon {
+    height: 50px;
+    width: 50px;
+}
+
+.cart-count {
+    position: relative;
+    top: 6px;
+    right: 29px;
+
+    font-weight: 800;
+    color: orange;
+}
