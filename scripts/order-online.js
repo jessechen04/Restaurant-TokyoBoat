@@ -1,9 +1,9 @@
 import {menu, menuCategories, fetchMenuCategories} from "../data/menu.js";
 import {cart, addToCart, countCart, saveCartToLocalStorage, getCartFromLocalStorage} from "../data/cart.js";
-import {user, fetchCurrentUser} from '../data/user.js';
+import {user, fetchCurrentUser, signOut} from '../data/user.js';
 
 getCartFromLocalStorage();
-//fetchCurrentUser();
+fetchCurrentUser();
 
 let navigationHTML = '';
 let categoriesHTML = '';
@@ -17,6 +17,10 @@ fetchMenuCategories()
         generateMenuCategories();
         generateMenuItems();
         document.querySelector('.cart-count').innerHTML = countCart();
+
+        document.querySelector('.sign-out').addEventListener('click', () => {
+            signOut();
+        });
     })
     .catch(error => {
         console.error(error);
@@ -70,6 +74,7 @@ fetchMenuCategories()
 
                     document.querySelector('.cart-count').innerHTML = countCart();
                 });
+
             });
         });
     }).catch(error => {

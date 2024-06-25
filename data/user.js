@@ -13,6 +13,22 @@ export function fetchCurrentUser() {
                 console.error('Error fetching data:', error);
                 reject(error);
             });
-            num++;
     });
+}
+
+export function signOut() {
+    fetch('/signout', {
+        method: 'POST',
+        credentials: 'same-origin', // include cookies
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data.message); // Optional: handle response
+        // Redirect or update UI as needed
+    })
+    .catch(error => {
+        console.error('Error signing out:', error);
+        // Handle error
+    });
+    
 }
