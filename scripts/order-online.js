@@ -1,7 +1,9 @@
 import {menu, menuCategories, fetchMenuCategories} from "../data/menu.js";
 import {cart, addToCart, countCart, saveCartToLocalStorage, getCartFromLocalStorage} from "../data/cart.js";
+import {user, fetchCurrentUser} from '../data/user.js';
 
 getCartFromLocalStorage();
+//fetchCurrentUser();
 
 let navigationHTML = '';
 let categoriesHTML = '';

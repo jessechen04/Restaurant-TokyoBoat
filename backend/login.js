@@ -1,7 +1,14 @@
 // setup and import code
 const mysql = require('mysql2');
 const express = require('express');
+const session = require('express-session');
 const app = express();
+
+app.use(session({
+    secret: 'secret',
+    cookie: { maxAge: 24 * 60 * 60 * 1000 },
+    saveUninitialized: false
+}));
 
 const bodyParser = require('body-parser');
 const encoder = bodyParser.urlencoded();
@@ -66,13 +73,20 @@ app.get('/', (req, res) => {
 });
 
 app.get('/sign-in', (req, res) => {
-    res.sendFile(usernameScreen);
+    if (req.session.authenticated) {
+        res.sendFile(orderScreen);
+    } else {
+        res.sendFile(usernameScreen);
+    }
 });
 
 // login system, checks if email and password matches database
-app.post('/', encoder, (req, res) => {
-    var emailInput = req.body.email;
-    var passwordInput = req.body.password;
+
+app.post('/login', encoder, (req, res) => {
+    //console.log(req.session);
+    const emailInput = req.body.email;
+    const passwordInput = req.body.password;
+
     db.query('select * from users where email = ?', [emailInput] , async (error, results, fields) => {
         if (error) {
             console.log(error);
@@ -85,8 +99,20 @@ app.post('/', encoder, (req, res) => {
             const passwordMatch = await bcrypt.compare(passwordInput, hashedPassword);
             
             if (passwordMatch) {
-                //console.log('hi');
+                req.session.authenticated = true;
+
+                req.session.user = {
+                    email: user.email,
+                    password: hashedPassword
+                };
+                
+                app.get(`/user-info`, (req, res) => {
+                    res.json(req.session.user);
+                    //res.json(user); //doesnt work
+                });
+
                 res.redirect('/order-online');
+                //console.log(results);
             } else {
                 res.redirect('/sign-in');
             }
@@ -96,7 +122,18 @@ app.post('/', encoder, (req, res) => {
         }
         //res.end();
     });
+    
 });
+
+app.get('/logout', (req, res) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.error('Error destroying session:', err);
+        }
+        res.redirect('/sign-in'); // Redirect to login page after logout
+    });
+});
+
 
 // pulls up the screens
 
