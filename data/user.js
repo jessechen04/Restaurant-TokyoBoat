@@ -1,4 +1,4 @@
-export let user;
+export let user = null;
 
 export function fetchCurrentUser() {
     return new Promise((resolve, reject) => {
@@ -23,6 +23,7 @@ export function signOut() {
     })
     .then(response => response.json())
     .then(data => {
+        user = null;
         console.log(data.message); // Optional: handle response
         // Redirect or update UI as needed
     })

@@ -16,6 +16,7 @@ export function addToCart(itemId, count) {
             id: itemId,
             count: count
         });
+        
     }
 }
 
@@ -44,4 +45,24 @@ export function saveCartToLocalStorage() {
 
 export function getCartFromLocalStorage() {
     cart = JSON.parse(localStorage.getItem('cart'));
+}
+
+export function addToCartDatabase(userId, itemId, count) {
+
+    
+    fetch('/addToCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId: userId, itemId: itemId, count: count})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    
 }

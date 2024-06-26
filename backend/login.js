@@ -17,6 +17,8 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 const bcrypt = require('bcryptjs');
+const { error } = require('console');
+const { createDiffieHellmanGroup } = require('crypto');
 
 dotenv.config({path: './.env'});
 
@@ -102,6 +104,7 @@ app.post('/login', encoder, (req, res) => {
                 req.session.authenticated = true;
 
                 req.session.user = {
+                    id: user.id,
                     email: user.email,
                     password: hashedPassword
                 };
@@ -211,7 +214,6 @@ new Promise((resolve) => {
                 if (err) {
                     console.log(err);
                 } else {
-    
                     res.json(results);
                 }
             });
@@ -221,6 +223,41 @@ new Promise((resolve) => {
 
 app.get('/cart', (req, res) => {
     res.sendFile(checkoutScreen);
+});
+
+app.use(express.json()); // collects and parses frontend data to json
+
+app.post('/addToCart', (req, res) => {
+    console.log(req.body);
+    const userId = req.body.userId;
+    const itemId = req.body.itemId;
+    const count = req.body.count;
+
+    db.query('SELECT * FROM shoppingcarts WHERE userId = ? AND itemID = ?', [userId, itemId], (error, results) => {
+        if (error) {
+            console.log(error);
+        }
+
+        if (results.length > 0) {
+            countTotal = count + results[0].count;
+            db.query('UPDATE shoppingcarts SET count = ? WHERE userId = ? AND itemID = ?', [countTotal, userId, itemId], (error, results) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log(results);
+                }
+            });
+        } else {
+            db.query('INSERT INTO shoppingcarts SET ?', {itemId: itemId, count: count, userId: userId}, (error, results) => {
+                if (error) {
+                    console.log(error);
+                } else {
+                    console.log(results);
+                }
+            });
+        }
+    });
+
 });
 
 // sets the port for code to run
