@@ -1,45 +1,45 @@
 import {menu, menuCategories, fetchMenuCategories} from "../data/menu.js";
-import {cart, addToCart, countCart, saveCartToLocalStorage, getCartFromLocalStorage, addToCartDatabase} from "../data/cart.js";
+import {cart, addToCart, countCart, saveCartToLocalStorage, getCartFromLocalStorage, addToCartDatabase, fetchCart} from "../data/cart.js";
 import {user, fetchCurrentUser, signOut} from '../data/user.js';
-
-getCartFromLocalStorage();
-
-fetchCurrentUser()
-    .then(() => {
-        if (user !== null) {
-            document.querySelector('.profile-tab').innerHTML = 
-                '<a href="order-online" class="sign-out">Sign out</a>';
-        } else {
-            document.querySelector('.profile-tab').innerHTML = 
-                '<a href="sign-in">Sign in</a>';
-        }
-    });
 
 let navigationHTML = '';
 let categoriesHTML = '';
 let menuItemsHTML = '';
 let menuItemPopupHTML = '';
 
-//completes the promise and loads navigation bar
-fetchMenuCategories()
+fetchCurrentUser()
     .then(() => {
-        generateNavigationBar();
-        generateMenuCategories();
-        generateMenuItems();
-        document.querySelector('.cart-count').innerHTML = countCart();
-
-        document.querySelector('.sign-out').addEventListener('click', () => {
-            signOut();
-        });
-    })
-    .catch(error => {
-        console.error(error);
-    }).finally(() => {
-        generateMenuItemsPopup();
-    }).catch(error => {
-        console.error(error);
+        if (user === null) {
+            getCartFromLocalStorage();
+            document.querySelector('.profile-tab').innerHTML = 
+                '<a href="sign-in">Sign in</a>';
+            generateOrderOnlinePage();
+        } else {
+            document.querySelector('.profile-tab').innerHTML = 
+                '<a href="order-online" class="sign-out">Sign out</a>';
+            fetchCart().then(() => {
+                generateOrderOnlinePage();
+            });
+        }
     });
 
+function generateOrderOnlinePage() {
+    fetchMenuCategories()
+        .then(() => {
+            //completes the promise and loads navigation bar
+            generateNavigationBar();
+            generateMenuCategories();
+            generateMenuItems();
+            document.querySelector('.cart-count').innerHTML = countCart();
+
+            document.querySelector('.sign-out').addEventListener('click', () => {
+                signOut();
+            });
+        })
+        .finally(() => {
+            generateMenuItemsPopup();
+        });
+}
 
 function generateNavigationBar() {
     menuCategories.forEach(element => {

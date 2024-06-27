@@ -11,9 +11,11 @@ fetchMenuCategories()
         fetchCurrentUser().then(() => {
             if (user === null) {
                 getCartFromLocalStorage();
+                //console.log(cart);
                 generateCheckoutPage();
                 document.querySelector('.cart-count').innerHTML = countCart();
             } else {
+
                 fetchCart().then(() => {
                     generateCheckoutPage();
                     document.querySelector('.cart-count').innerHTML = countCart();

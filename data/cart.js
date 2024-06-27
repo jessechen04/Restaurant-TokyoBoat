@@ -48,6 +48,9 @@ export function getCartFromLocalStorage() {
     cart = JSON.parse(localStorage.getItem('cart'));
 }
 
+
+
+
 export function fetchCart() {
     return new Promise((resolve, reject) => {
         fetch('http://localhost:5000/getCart')
