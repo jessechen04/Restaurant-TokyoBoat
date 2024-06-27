@@ -227,8 +227,18 @@ app.get('/cart', (req, res) => {
 
 app.use(express.json()); // collects and parses frontend data to json
 
+app.get('/getCart', (req, res) => {
+    db.query(`SELECT * FROM shoppingcarts WHERE userId = ?`, [req.session.user.id], (err, results, fields) => {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json(results);
+        }
+    });
+});
+
 app.post('/addToCart', (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
     const userId = req.body.userId;
     const itemId = req.body.itemId;
     const count = req.body.count;
@@ -244,7 +254,7 @@ app.post('/addToCart', (req, res) => {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log(results);
+                    console.log('Successfully Added');
                 }
             });
         } else {
@@ -252,12 +262,26 @@ app.post('/addToCart', (req, res) => {
                 if (error) {
                     console.log(error);
                 } else {
-                    console.log(results);
+                    console.log('Successfully Added');
                 }
             });
         }
     });
 
+});
+
+app.post('/removeFromCart', (req, res) => {
+    const userId = req.body.userId;
+    const itemId = req.body.itemId;
+
+    //console.log(userId);
+    //console.log(itemId);
+
+    db.query('DELETE FROM shoppingcarts WHERE userId = ? AND itemId = ?', [userId, itemId], (error, results) => {
+        if (error) {
+            console.log(error);
+        }   
+    });
 });
 
 // sets the port for code to run

@@ -1,17 +1,25 @@
-import {cart, countCart, removeFromCart, getCartFromLocalStorage, saveCartToLocalStorage} from '../data/cart.js';
-import {menu, fetchMenuCategories, menuCategories} from '../data/menu.js';
+import { cart, countCart, removeFromCart, removeFromCartDatabase, getCartFromLocalStorage, saveCartToLocalStorage, fetchCart } from '../data/cart.js';
+import { menu, fetchMenuCategories, menuCategories } from '../data/menu.js';
+import { user, fetchCurrentUser } from '../data/user.js';
 
 const TAX_RATE = 0.06;
-
-getCartFromLocalStorage();
-document.querySelector('.cart-count').innerHTML = countCart();
 
 //console.log(cart);
 
 fetchMenuCategories()
     .then(() => {
-
-        generateCheckoutPage();
+        fetchCurrentUser().then(() => {
+            if (user === null) {
+                getCartFromLocalStorage();
+                generateCheckoutPage();
+                document.querySelector('.cart-count').innerHTML = countCart();
+            } else {
+                fetchCart().then(() => {
+                    generateCheckoutPage();
+                    document.querySelector('.cart-count').innerHTML = countCart();
+                });
+            }
+        });
 });
 
 function generateCheckoutPage() {
@@ -27,7 +35,7 @@ function generateCheckoutPage() {
 
         menu.forEach(menuCategories => {
             menuCategories.forEach(menuItem => {
-                if (menuItem.id === cartItem.id) {
+                if (menuItem.id === cartItem.itemId) {
                     currentItem = menuItem;
                     return;
                 }
@@ -41,7 +49,7 @@ function generateCheckoutPage() {
                 <div class="item-price">${(currentItem.itemPriceCents / 100).toFixed(2)}</div>
                 <div class="item-quantity">Quantity: ${cartItem.count} 
                     <div class="edit-item">Edit</div> 
-                    <div class="remove-item" data-item-id="${cartItem.id}">Remove</div>
+                    <div class="remove-item" data-item-id="${cartItem.itemId}">Remove</div>
                 </div>
             </div>
             `
@@ -66,10 +74,17 @@ function generateCheckoutPage() {
 
     document.querySelectorAll('.remove-item').forEach(element => {
         element.addEventListener('click', () => {
-            const id = parseInt(element.dataset.itemId);
-            removeFromCart(id);
+            const itemId = parseInt(element.dataset.itemId);
+            removeFromCart(itemId);
+            //console.log(itemId);
             //console.log(cart);
             saveCartToLocalStorage();
+            if (user === null) {
+                saveCartToLocalStorage();
+            } else {
+                removeFromCartDatabase(user.id, itemId);
+            }
+            
             generateCheckoutPage();
             document.querySelector('.cart-count').innerHTML = countCart();
         });

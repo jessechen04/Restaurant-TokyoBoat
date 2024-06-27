@@ -6,12 +6,13 @@ export function fetchCurrentUser() {
             .then(response => response.json())
             .then(data => {
                 user = data;
-                console.log(user);
+                //console.log(user);
                 resolve();
             })
             .catch(error => {
-                console.error('Error fetching data:', error);
-                reject(error);
+                //console.error('Error fetching data:', error);
+                user = null;
+                resolve();
             });
     });
 }

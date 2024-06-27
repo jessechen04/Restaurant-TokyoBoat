@@ -1,4 +1,4 @@
-export let cart = [];
+export let cart = null;
 
 export function addToCart(itemId, count) {
     let cartItem;
@@ -13,17 +13,18 @@ export function addToCart(itemId, count) {
         cartItem.count += count;
     } else {
         cart.push({
-            id: itemId,
+            itemId: itemId,
             count: count
         });
         
     }
 }
 
-export function removeFromCart(id) {
+export function removeFromCart(itemId) {
     cart = cart.filter(cartItem => {
-        return cartItem.id !== id;
+        return cartItem.itemId !== itemId;
     });
+    //console.log(cart);
 }
 
 export function editCart() {
@@ -47,9 +48,23 @@ export function getCartFromLocalStorage() {
     cart = JSON.parse(localStorage.getItem('cart'));
 }
 
-export function addToCartDatabase(userId, itemId, count) {
+export function fetchCart() {
+    return new Promise((resolve, reject) => {
+        fetch('http://localhost:5000/getCart')
+        .then(response => response.json())
+            .then(data => {
+                cart = data;
+                //console.log(cart);
+                resolve();
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                reject(error); // Reject the promise if there's an error
+            });
+    })
+}
 
-    
+export function addToCartDatabase(userId, itemId, count) {
     fetch('/addToCart', {
         method: 'POST',
         headers: {
@@ -64,5 +79,21 @@ export function addToCartDatabase(userId, itemId, count) {
     .catch(error => {
         console.error(error);
     });
-    
+}
+
+export function removeFromCartDatabase(userId, itemId) {
+    fetch('/removeFromCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId: userId, itemId: itemId})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
 }
