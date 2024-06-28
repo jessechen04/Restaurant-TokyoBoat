@@ -28,7 +28,11 @@
 
 }
 
-.remove-item, .edit-item {
+.quantity-selector {
+    display: inline;
+}
+
+.remove-item {
     display: inline;
     color: rgb(3, 100, 174);
     cursor: pointer;

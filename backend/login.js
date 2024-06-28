@@ -284,6 +284,22 @@ app.post('/removeFromCart', (req, res) => {
     });
 });
 
+app.post('/editCart', (req, res) => {
+    const userId = req.body.userId;
+    const itemId = req.body.itemId;
+    const count = req.body.count;
+
+    db.query('UPDATE shoppingcarts SET count = ? WHERE userId = ? AND itemId = ?', [count, userId, itemId], (error, results) => {
+        if (error) {
+            console.log(error);
+        }   
+
+        if (results > 0) {
+            console.log(results);
+        }
+    });
+});
+
 // sets the port for code to run
 app.listen(5000, () => {
     console.log('Server started on port 5000.');

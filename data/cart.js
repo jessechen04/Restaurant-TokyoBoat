@@ -4,7 +4,8 @@ export function addToCart(itemId, count) {
     let cartItem;
 
     cart.forEach(element => {
-        if (element.id === itemId) {
+        if (element.itemId === itemId) {
+    
             cartItem = element;
         }
     });
@@ -27,8 +28,17 @@ export function removeFromCart(itemId) {
     //console.log(cart);
 }
 
-export function editCart() {
+export function editCart(itemId, count) {
+    let cartItem;
 
+    cart.forEach(element => {
+        if (element.itemId === itemId) {
+    
+            cartItem = element;
+        }
+    });
+
+    cartItem.count = count;
 }
 
 export function countCart() {
@@ -91,6 +101,23 @@ export function removeFromCartDatabase(userId, itemId) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({userId: userId, itemId: itemId})
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => {
+        console.error(error);
+    });
+}
+
+export function editCartDatabase(userId, itemId, count) {
+    fetch('/editCart', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({userId: userId, itemId: itemId, count: count})
     })
     .then(response => response.json())
     .then(data => {
