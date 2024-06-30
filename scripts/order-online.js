@@ -12,11 +12,11 @@ fetchCurrentUser()
         if (user === null) {
             getCartFromLocalStorage();
             document.querySelector('.profile-tab').innerHTML = 
-                '<a href="sign-in">Sign in</a>';
+                '<a class="sign-in" href="sign-in">Sign in</a>';
             generateOrderOnlinePage();
         } else {
             document.querySelector('.profile-tab').innerHTML = 
-                '<a href="order-online" class="sign-out">Sign out</a>';
+                '<a class="sign-in sign-out" href="order-online">Sign out</a>';
             fetchCart().then(() => {
                 generateOrderOnlinePage();
             });
@@ -38,6 +38,7 @@ function generateOrderOnlinePage() {
         })
         .finally(() => {
             generateMenuItemsPopup();
+            navigationBarStyle();
         });
 }
 
@@ -45,7 +46,7 @@ function generateNavigationBar() {
     menuCategories.forEach(element => {
         navigationHTML += 
         `
-        <div class="category-flex"><a href="#${element.category}">${element.category}</a></div>
+        <div class="category-flex"><a class="category-name" href="#${element.category}">${element.category}</a></div>
         `
     });
 
@@ -159,4 +160,30 @@ function closeItemPopup() {
     if (fixedContent.style.display === "block") {
         fixedContent.style.display = "none";
     }
+}
+
+// learn code later
+
+function navigationBarStyle() {
+    const sections = document.querySelectorAll('.menu-section');
+    const navLinks = document.querySelectorAll('.category-name');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (window.scrollY >= sectionTop - sectionHeight / 3) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href').includes(`${current}`)) {
+                link.classList.add('active');
+            }
+        });
+    });
 }

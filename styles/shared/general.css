@@ -1,6 +1,7 @@
 body {
     font-family: Roboto;
     margin: 0px;
+    margin-bottom: 800px;
 }
 
 html {
@@ -10,4 +11,25 @@ html {
 a {
     text-decoration: none;
     color: black;
+}
+
+/* Target the scrollbar */
+::-webkit-scrollbar {
+    width: 12px; /* width of the scrollbar */
+}
+
+/* Styling the scrollbar track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1; /* color of the track */
+}
+
+/* Styling the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+    background: #888; /* color of the thumb */
+    border-radius: 6px; /* roundness of the thumb */
+}
+
+/* Change scrollbar on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555; /* color of the thumb on hover */
 }

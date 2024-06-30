@@ -36,9 +36,11 @@
     font-weight: 800;
     font-size: 14px;
     color: white;
-    background-color: brown;
+    background-color: red;
     border: none;
+    border-radius: 10px;
 
+    margin-top: 10px;
     height: 40px;
 
     cursor: pointer;

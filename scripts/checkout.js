@@ -46,7 +46,7 @@ function generateYourBagHTML() {
             `
             <div class="bag-item">
                 <div class="item-name">${currentItem.itemName}</div>
-                <div class="item-price">${(currentItem.itemPriceCents / 100).toFixed(2)}</div>
+                <div class="item-price">$${(currentItem.itemPriceCents / 100).toFixed(2)}</div>
                 <div class="item-quantity">Quantity:
                     <div class="quantity-selector" data-item-id="${currentItem.id}" data-count="${cartItem.count}">
                         <select>

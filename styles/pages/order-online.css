@@ -13,33 +13,35 @@
     border-width: 1px;
 }
 
-#Appetizers,
-#Soups,
-#Salads,
-#Dinner\ From\ Sushi\ Bar,
-#Sushi\ \/\ Sashimi,
-#Sushi\ \/\ Hand\ Rolls,
-#Chef\'s\ Special\ Rolls,
-#Tempura,
-#Hibachi\ Dinner,
-#Hibachi\ Express,
-#Hibachi\ Bowls {
-    padding-top: 60px;
-}
+
 
 .category-flex {
     display: flex;
     justify-content: center;
     align-items: center;
 
-
     height: 40px;
 }
 
+
+/* learn code later */
+.category-name {
+    transition: 0.5s;
+}
+
+.category-name.active {
+    text-decoration: underline;
+    background-color: gainsboro;
+}
+
 .menu {
-    margin-top: 70px;
+    margin-top: 80px;
     margin-left: 180px;
     margin-right: 20px;
+}
+
+.menu-section {
+    scroll-margin-top: 80px;
 }
 
 .section-title {
@@ -51,7 +53,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 20px;
-    column-gap: 5px;
+    column-gap: 10px;
     margin-bottom: 20px;
 }
 
@@ -74,12 +76,14 @@
 }
 
 .menu-item {
-    background-color: beige;
+    background-color: rgb(245, 245, 245);
     border: solid;
-    border-width: 2px;
-    border-color: black;
+    border-width: 1px;
+    border-color: red;
     border-radius: 5px;
     padding: 5px;
+
+    cursor: pointer;
 }
 
 .fill {
