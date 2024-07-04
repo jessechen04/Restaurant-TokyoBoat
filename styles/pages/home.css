@@ -1,13 +1,30 @@
+body {
+    background-color: black;
+}
+
+section {
+    display: grid;
+    place-items: center;
+    align-content: center;
+    height: 100vh;
+    background-color: black;
+}
+
 .contact-us-box {
     width: 1fr;
     height: 700px;
     background-color: yellow;
 }
 
-.filler {
-    width: 1fr;
-    height: 700px;
-    background-color: pink;
+.order-online-button {
+    font-size: 24px;
+    font-weight: 800;
+    background-color: black;
+    border: none;
+}
+
+.order-online-link {
+    color: white;
 }
 
 .contact-us-text {
@@ -20,3 +37,15 @@
     justify-content: space-between;
 }
 
+
+.hidden {
+    filter: blur(5px);
+    transform: translate(-100%);
+    transition: 2s ease;
+}
+
+.show {
+    filter: blur(0px);
+    transform: translate(0);
+    transition: 2s ease;
+}

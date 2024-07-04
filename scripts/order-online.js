@@ -99,9 +99,9 @@ function generateMenuItemsPopup() {
             `
             <div class="menu-item-popup">
                 <div class="exit">x</div>
-                <div>${itemName}</div>
-                <div>${itemPrice}</div>
-                <div>${itemDescription}</div>
+                <div class="item-name-popup">${itemName}</div>
+                <div class="item-price-popup">${itemPrice}</div>
+                <div class="item-description-popup">${itemDescription}</div>
                 <div class="quantity-selector-${itemId}">
                     <select>
                         <option value="1">1</option>
@@ -148,17 +148,25 @@ function generateMenuItemsPopup() {
 
 function toggleItemPopup() {
     let fixedContent = document.querySelector('.popup');
-    if (fixedContent.style.display === "none") {
-        fixedContent.style.display = "block";
+    let overlay = document.querySelector('.overlay');
+    if (fixedContent.style.opacity === '0') {
+        fixedContent.style.opacity = '1';
+        overlay.style.opacity = '1';
+        fixedContent.style.pointerEvents = 'auto';
     } else {
-        fixedContent.style.display = "none";
+        fixedContent.style.opacity = '0';
+        overlay.style.opacity = '0';
+        fixedContent.style.pointerEvents = 'none';
     }
 }
 
 function closeItemPopup() {
     let fixedContent = document.querySelector('.popup');
-    if (fixedContent.style.display === "block") {
-        fixedContent.style.display = "none";
+    let overlay = document.querySelector('.overlay');
+    if (fixedContent.style.opacity === '1') {
+        fixedContent.style.opacity = '0';
+        overlay.style.opacity = '0';
+        fixedContent.style.pointerEvents = 'none';
     }
 }
 

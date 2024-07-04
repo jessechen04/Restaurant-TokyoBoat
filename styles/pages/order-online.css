@@ -10,19 +10,30 @@
 
     background-color: white;
     border-right: solid;
-    border-width: 1px;
+    border: none;
+
+    /*transform-style: preserve-3d;
+    transform: perspective(1000px);
+    I need this if I want transformation in third dimension*/
 }
 
-
-
 .category-flex {
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    height: 40px;
+    height: 100%;
+    border: solid;
+    border-width: 1px;
+    border-radius: 6px;
+
+    transition: 0.5s;
 }
 
+.category-flex:hover {
+    transform: translateX(10px);
+}
 
 /* learn code later */
 .category-name {
@@ -96,31 +107,77 @@ a {
 }
 
 .popup {
-    display: none; /* Initially hide the fixed content */
+    opacity: 0; /* Initially hide the fixed content */
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
     padding: 0px 5px;
-    border: 1px solid black;
+    border: none;
     border-radius: 5px;
-    border-color: darkgray;
     z-index: 9999;
+    height: 380px;
+    width: 300px;
+    pointer-events: none; /* Allow clicks to pass through when hidden */
+
+    transition: 0.3s;
 }
 
-.menu-item-popup {
-    height: 200px;
-    width: 300px;
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    z-index: 999;
+    pointer-events: none; /* Allow clicks to pass through when hidden */
+
+    transition: 0.3s;
 }
 
 .exit {
     text-align: right;
+    cursor: pointer;
+}
+
+.item-name-popup {
+    font-weight: 600;
+    font-size: 30px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-bottom: 6px;
+}
+
+.item-price-popup, .item-description-popup {
+    font-size: 17px;
+    margin-left: 20px;
+    margin-bottom: 6px;
 }
 
 select {
-    background-color: hsl(0, 5%, 88%);
-    border-radius: 2px;
+    background-color: rgb(234, 234, 234);
+    border-radius: 18px;
+    border: none;
+    padding: 8px 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+    font-size: 14px;
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+select:hover {
+    background-color: rgb(230, 230, 230);
+}
+
+select:active {
+    background-color: rgb(220, 220, 220);
 }
 
 .add-to-order {
@@ -129,5 +186,14 @@ select {
 }
 
 .add-to-order-button {
+    height: 40px;
     width: 200px;
+
+    border-radius: 8px;
+    border: none;
+    background-color: red;
+    color: white;
+    font-weight: 800;
+
+    cursor: pointer;
 }
