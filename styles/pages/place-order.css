@@ -1,0 +1,8 @@
+.input-grid {
+    margin-top: 80px;
+    margin-left: 40px;
+
+    display: grid;
+    grid-template-columns: 500px;
+    row-gap: 16px;
+}

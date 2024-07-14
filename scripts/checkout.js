@@ -142,7 +142,7 @@ function generateOrderSummaryHTML() {
         <div class="tax-flex"><div>Tax:</div><div>$${tax.toFixed(2)}</div></div>
         <div class="order-total-flex"><div>Order Total:</div><div>$${orderTotal.toFixed(2)}</div></div>
         <button class="place-order-button">
-            <a class="place-order-text">Place Your Order</a>
+            <a class="place-order-text" href="place-order">Place Your Order</a>
         </button>
         `
 }

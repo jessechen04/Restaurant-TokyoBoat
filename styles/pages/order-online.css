@@ -18,17 +18,22 @@
 }
 
 .category-flex {
-    background-color: white;
+    background-color: rgb(245, 245, 245);
     display: flex;
     justify-content: center;
     align-items: center;
 
     height: 100%;
-    border: solid;
+    border: none;
     border-width: 1px;
     border-radius: 6px;
+    margin-bottom: 1px;
 
     transition: 0.5s;
+}
+
+.category-flex:hover {
+    background-color: rgb(230, 230, 230);
 }
 
 .category-flex:hover {

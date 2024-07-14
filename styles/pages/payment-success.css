@@ -1,0 +1,9 @@
+.screen-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    background-color: aqua;
+    height: 100vh;
+}

@@ -17,8 +17,6 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 const bcrypt = require('bcryptjs');
-const { error } = require('console');
-const { createDiffieHellmanGroup } = require('crypto');
 
 dotenv.config({path: './.env'});
 
@@ -28,6 +26,8 @@ const orderScreen = path.join(__dirname, '..', 'order-online.html');
 const checkoutScreen = path.join(__dirname, '..', 'checkout.html');
 const usernameScreen = path.join(__dirname, '..', 'sign-in.html');
 const createAccountScreen = path.join(__dirname, '..', 'create-account.html');
+const placeOrderScreen = path.join(__dirname, '..', 'place-order.html');
+const paymentSuccessScreen = path.join(__dirname, '..', 'payment-success.html');
 const stylesPagesPath = path.join(__dirname, '..', 'styles', 'pages');
 const stylesSharedPath = path.join(__dirname, '..', 'styles', 'shared');
 const scriptsPath = path.join(__dirname, '..', 'scripts');
@@ -298,6 +298,18 @@ app.post('/editCart', (req, res) => {
             console.log(results);
         }
     });
+});
+
+app.get('/place-order', (req, res) => {
+    res.sendFile(placeOrderScreen);
+});
+
+app.post('/payment-success', (req, res) => {
+    res.sendFile(paymentSuccessScreen);
+});
+
+app.get('/payment-success', (req, res) => {
+    res.sendFile(paymentSuccessScreen);
 });
 
 // sets the port for code to run
