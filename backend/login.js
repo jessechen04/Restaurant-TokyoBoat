@@ -300,18 +300,6 @@ app.post('/editCart', (req, res) => {
     });
 });
 
-app.get('/place-order', (req, res) => {
-    res.sendFile(placeOrderScreen);
-});
-
-const luhnsAlgorithmCheck = require('./payment');
-
-app.post('/payment-success', encoder, (req, res) => {
-    console.log(req.body.name);
-    console.log(req.body.cardNumber);
-    res.sendFile(paymentSuccessScreen);
-});
-
 app.get('/payment-success', (req, res) => {
     res.sendFile(paymentSuccessScreen);
 });
