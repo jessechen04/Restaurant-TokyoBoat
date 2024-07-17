@@ -17,8 +17,11 @@ const dotenv = require('dotenv');
 const path = require('path');
 
 const bcrypt = require('bcryptjs');
+const { error } = require('console');
 
 dotenv.config({path: './.env'});
+
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
 // file paths used
 const home = path.join(__dirname, '..', 'home.html');
@@ -26,7 +29,6 @@ const orderScreen = path.join(__dirname, '..', 'order-online.html');
 const checkoutScreen = path.join(__dirname, '..', 'checkout.html');
 const usernameScreen = path.join(__dirname, '..', 'sign-in.html');
 const createAccountScreen = path.join(__dirname, '..', 'create-account.html');
-const placeOrderScreen = path.join(__dirname, '..', 'place-order.html');
 const paymentSuccessScreen = path.join(__dirname, '..', 'payment-success.html');
 const stylesPagesPath = path.join(__dirname, '..', 'styles', 'pages');
 const stylesSharedPath = path.join(__dirname, '..', 'styles', 'shared');
@@ -298,6 +300,42 @@ app.post('/editCart', (req, res) => {
             console.log(results);
         }
     });
+});
+
+let menuItems = new Map();
+
+db.query('SELECT * FROM menuitems', (error, results) => {
+    results.forEach(item => {
+        menuItems.set(item.id, item);
+    });
+    //console.log(menuItems);
+});
+
+app.post('/place-order', async (req, res) => {;
+    try {
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            mode: 'payment',
+            line_items: req.body.cart.map(item => {
+                const cartItem = menuItems.get(parseInt(item.itemId));
+                return {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: {
+                            name: cartItem.itemName
+                        },
+                        unit_amount: cartItem.itemPriceCents
+                    },
+                    quantity: item.count,
+                }
+            }),
+            success_url: `${process.env.SERVER_URL}/payment-success`,
+            cancel_url: `${process.env.SERVER_URL}/cart`
+        });
+        res.json({ url: session.url });
+    } catch(e) {
+        res.status(500).json({error: e.message});
+    }
 });
 
 app.get('/payment-success', (req, res) => {

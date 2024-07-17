@@ -145,4 +145,26 @@ function generateOrderSummaryHTML() {
             <a class="place-order-text">Place Your Order</a>
         </button>
         `
+
+    document.querySelector('.place-order-button').addEventListener('click', () => {
+        fetch('/place-order', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ cart: cart })
+        }).then(response => {
+            if (response.ok) {
+                return response.json();
+            }
+            return response.json().then(json => Promise.reject(json));
+        })
+        .then(({ url }) => {
+            //console.log(url);
+            window.location = url;
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    });
 }

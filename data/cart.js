@@ -86,9 +86,6 @@ export function addToCartDatabase(userId, itemId, count) {
         body: JSON.stringify({userId: userId, itemId: itemId, count: count})
     })
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
     .catch(error => {
         console.error(error);
     });
@@ -103,9 +100,6 @@ export function removeFromCartDatabase(userId, itemId) {
         body: JSON.stringify({userId: userId, itemId: itemId})
     })
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
     .catch(error => {
         console.error(error);
     });
@@ -120,9 +114,6 @@ export function editCartDatabase(userId, itemId, count) {
         body: JSON.stringify({userId: userId, itemId: itemId, count: count})
     })
     .then(response => response.json())
-    .then(data => {
-        console.log(data);
-    })
     .catch(error => {
         console.error(error);
     });
