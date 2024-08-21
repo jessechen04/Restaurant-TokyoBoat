@@ -46,6 +46,10 @@
     background-color: gainsboro;
 }
 
+.sign-out {
+    cursor: pointer;
+}
+
 .shopping-bag-icon {
     height: 46px;
     width: 46px;

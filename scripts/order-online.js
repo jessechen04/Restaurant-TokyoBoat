@@ -16,11 +16,16 @@ fetchCurrentUser()
             generateOrderOnlinePage();
         } else {
             document.querySelector('.profile-tab').innerHTML = 
-                '<a class="sign-in sign-out" href="order-online">Sign out</a>';
+                '<a class="sign-in sign-out">Sign out</a>';
             fetchCart().then(() => {
                 generateOrderOnlinePage();
             });
         }
+
+        document.querySelector('.sign-out').addEventListener('click', () => {
+            signOut();
+            window.location.href = window.location.href;
+        });
     });
 
 function generateOrderOnlinePage() {
@@ -31,10 +36,6 @@ function generateOrderOnlinePage() {
             generateMenuCategories();
             generateMenuItems();
             document.querySelector('.cart-count').innerHTML = countCart();
-
-            document.querySelector('.sign-out').addEventListener('click', () => {
-                signOut();
-            });
         })
         .finally(() => {
             generateMenuItemsPopup();

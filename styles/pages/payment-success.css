@@ -1,9 +1,83 @@
-.screen-flex {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+body {
+    background-color: gainsboro;
+}
 
-    background-color: aqua;
-    height: 100vh;
+.order-information {
+    background-color: white;
+    margin: 40px;
+    margin-top: 100px;
+
+    border: solid;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: gray;
+}
+
+.screen-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+@media (max-width: 750px) {
+    .screen-grid {
+        grid-template-columns: 1fr;
+    }   
+    .order-summary {
+        margin-top: 0 !important;
+    }
+}
+
+.your-order {
+    margin-top: 0;
+}
+
+.content-flex {
+    display: flex;
+    flex-direction: column;
+    margin: 20px;
+}
+
+.success-message {
+    margin-bottom: 10px;
+}
+
+.check-icon {
+    height: 20px;
+    width: 20px;
+    vertical-align: middle;
+}
+
+.success-text {
+    display: inline;
+    vertical-align: middle;
+    color: rgb(1, 164, 1);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+
+.purchased-items {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.item-name, .item-price, .item-quantity {
+    display: inline;
+}
+
+.order-summary {
+    margin-top: 100px;
+}
+
+.order-summary-text {
+    font-weight: 800;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.item-total-flex, .tax-flex, .order-total-flex {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }

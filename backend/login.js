@@ -49,8 +49,8 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     password: '',
-    database: 'nodejs-login',
-    port: 3377
+    database: 'tokyo-boat',
+    port: 3306
 });
 
 /*const db = mysql.createConnection({
@@ -128,15 +128,6 @@ app.post('/login', encoder, (req, res) => {
         //res.end();
     });
     
-});
-
-app.get('/logout', (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            console.error('Error destroying session:', err);
-        }
-        res.redirect('/sign-in'); // Redirect to login page after logout
-    });
 });
 
 app.post('/signout', (req, res) => {

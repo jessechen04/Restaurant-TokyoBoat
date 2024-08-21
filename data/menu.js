@@ -19,6 +19,7 @@ export function fetchMenuCategories() {
             .then(response => response.json())
             .then(data => {
                 menuCategories = data; // Assign the fetched data to the local variable
+                console.log(menuCategories);
                 //console.log('Data assigned to local variable:', menuCategories);
                 fetchMenuItems(resolve); // Resolve the promise when data is fetched and assigned
             })
@@ -39,7 +40,7 @@ function fetchMenuItems(fun) {
             .then(response => response.json())
             .then(data => {
                 menu.push(data); // Assign the fetched data to the local variable
-                //console.log('Data assigned to local variable:', menu);
+                console.log('Data assigned to local variable:', menu);
                 if (index === (menuCategories.length - 1)) {
                     fun();
                 }

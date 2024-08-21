@@ -1,6 +1,6 @@
 import { cart, countCart, removeFromCart, removeFromCartDatabase, getCartFromLocalStorage, saveCartToLocalStorage, fetchCart, editCart, editCartDatabase } from '../data/cart.js';
 import { menu, fetchMenuCategories, menuCategories } from '../data/menu.js';
-import { user, fetchCurrentUser } from '../data/user.js';
+import { user, fetchCurrentUser, signOut } from '../data/user.js';
 
 const TAX_RATE = 0.06;
 
@@ -9,16 +9,24 @@ fetchMenuCategories()
         fetchCurrentUser().then(() => {
             if (user === null) {
                 getCartFromLocalStorage();
+                document.querySelector('.profile-tab').innerHTML = 
+                '<a class="sign-in" href="sign-in">Sign in</a>';
                 //console.log(cart);
                 generateCheckoutPage();
                 document.querySelector('.cart-count').innerHTML = countCart();
             } else {
-
+                document.querySelector('.profile-tab').innerHTML = 
+                '<a class="sign-in sign-out">Sign out</a>';
                 fetchCart().then(() => {
                     generateCheckoutPage();
                     document.querySelector('.cart-count').innerHTML = countCart();
                 });
             }
+
+            document.querySelector('.sign-out').addEventListener('click', () => {
+                signOut();
+                window.location.href = window.location.href;
+            });
         });
 });
 

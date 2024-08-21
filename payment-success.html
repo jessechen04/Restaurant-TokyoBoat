@@ -23,9 +23,30 @@
         </div>
     </div>
 
-    <div class="screen-flex">
-        <div>Your Order Has Been Successfully Placed!</div>
-        <a href="order-online"><button>Still Hungry? Order More</button></a>
+    <div class="screen-grid">
+        
+        <div>
+            <div class="order-information">
+                <div class="content-flex">
+                    <div class="success-message">
+                        <img class="check-icon" src="images/check.icon.webp">
+                        <div class="success-text">Your Order Has Been Successfully Placed!</div>
+                    </div>
+                    <div>Pick up ready in 25 minutes</div>
+                </div>
+            </div>
+    
+            <div class="purchased-order"></div>
+        </div>
+
+        <div>
+            <div class="order-summary-box"></div>
+
+            <a href="order-online"><button>Still Hungry? Order More</button></a>
+        </div>
+
     </div>
+
+    <script src="scripts/payment-success.js" type="module"></script>
 </body>
 </html>
