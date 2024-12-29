@@ -76,6 +76,14 @@ app.get('/', (req, res) => {
     res.sendFile(home);
 });
 
+/* meant for rendering map with google cloud api key
+app.get('/map', (req, res) => {
+    const apiKey = process.env.GOOGLE_MAPS_API_KEY;
+    const embedUrl = `https://www.google.com/maps/embed/v1/place?key=${apiKey}&q=Eiffel+Tower,Paris+France`;
+    res.json({ url: embedUrl });
+});
+*/
+
 app.get('/sign-in', (req, res) => {
     if (req.session.authenticated) {
         res.sendFile(orderScreen);

@@ -2,6 +2,30 @@ body {
     background-color: white;
 }
 
+.header-menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 360px;
+    margin-right: 40px;
+
+    font-weight: 800;
+}
+
+.header-sign-in {
+    border: solid;
+    border-width: 2px;
+    border-color: black;
+    padding: 8px;
+    border-radius: 20px;
+
+    transition: 0.4s;
+}
+
+.header-sign-in:hover {
+    opacity: 0.6;
+}
 
 section {
     display: grid;
@@ -33,21 +57,72 @@ section {
 
 .contact-us-box {
     width: 1fr;
-    height: 700px;
+    height: fit-content;
     background-color: black;
     color: white;
 }
 
-.contact-us-text {
-    padding-top: 40px;
-    text-align: center;
+.contact-us-grid {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+}
+
+.phone-number {
+    border: solid;
+    border-color: white;
+    border-radius: 30px;
+    color: white;
+
+    padding: 16px 36px;
+    
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 40px;
+    padding: 20px;
+    margin: 20px;
+}
+
+@media (max-width: 800px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
 }
 
 .days-flex {
     display: flex;
     justify-content: space-between;
+    margin: 40px 0px;
 }
 
+.map-flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.address {
+    color: white;
+    font-size: 18px;
+    font-weight: 800;
+    margin-bottom: 40px;
+    align-self: center;
+}
+
+.map {
+    width: 100%;
+    height: 300px;
+    background-color: white;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+}
 
 .sign-in-section {
     display: flex;
@@ -56,10 +131,6 @@ section {
     align-items: center;
 
     height: 120px;
-    border: solid;
-    border-color: gainsboro;
-    border-left: 1px;
-    border-right: 1px;
 }
 
 .sign-in-flex {
@@ -67,7 +138,7 @@ section {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 30px;
 }
 
 .sign-in_content {

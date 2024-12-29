@@ -28,8 +28,9 @@
     font-weight: 400;
     font-size: 22px;
     color: red;
-
+    min-width: fit-content;
     margin-left: 24px;
+    margin-right: 24px;
 }
 
 .sign-in {
